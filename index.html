@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            background-color: whitesmoke;
+            margin: 50px auto;
+            width: 30%;
+            padding: 2%;
+            /* text-align: center; */
+            margin-top: 5%;
+            
+        }
+        .container>h1{
+            text-align: center;
+        }
+        #name{
+            padding: 1%;
+            width: 80%;
+        }
+        #email{
+            padding: 1%;
+            width: 80%;
+        }
+        #number{
+            padding: 1%;
+            width: 75%;
+        }
+        #state{
+            padding: 1%;
+            width: 80%;
+        }
+        #city{
+            padding: 1%;
+            width: 80%;
+        }
+        button{
+            padding: 2%;
+            width: 80%;
+            background-color: blue;
+            border: none;
+            color: white;
+            font: bold;
+            margin-left: 7%;
+
+        }
+        .container>button{
+            text-align: center;
+        }
+        button:hover{
+            background-color: green;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enter your Details</h1>
+        <form action="index2.html">
+            <label for="name">Name:</label>
+            <input type="text" placeholder="enter your name" id="name" required><br><br><br>
+            <label for="email">Email:</label>
+            <input type="email" placeholder="enter your email address" id="email" required><br><br><br>
+            <label for="number">Number:</label>
+            <input type="number" placeholder="enter your number" id="number" required><br><br><br>
+
+            <label for="staes">State:</label>
+            <select name="state" id="state" onchange="getcities(this.value)" required>
+               <option value="">select District</option>
+            </select><br><br><br>
+
+            <label for="cities">City:</label>
+            <select name="cities" id="city" required>
+                <option value="">select City</option>
+            </select><br><br><br>
+
+            <button>submit</button><br><br><br><br>
+
+        </form>
+    </div>
+
+
+    <script>
+
+const statesAndCities = {
+  "Visakhapatnam": ["Visakhapatnam", "Vizianagaram", "Anakapalle"],
+  "Guntur": ["Guntur", "Tenali", "Mangalagiri"],
+  "Krishna": ["Vijayawada", "Machilipatnam", "Gudivada"],
+  "Kurnool": ["Kurnool", "Adoni", "Nandyal"],
+  "Chittoor": ["Tirupati", "Chittoor", "Srikalahasti"]
+};
+
+let states=document.getElementById("state");
+for(let state in statesAndCities){
+    let option=document.createElement("option");
+    option.text=state;
+    states.appendChild(option);
+}
+function getcities(state){
+    let cities=document.getElementById("city");
+    cities.innerHTML='<option>"select city"</option>';
+    if(state){
+        const selectedstate=statesAndCities[state];
+        // console.log(selectedstate)
+        for(let index=0;index<selectedstate.length;index++){
+            const options=document.createElement("option");
+            options.text=selectedstate[index];
+            cities.appendChild(options)
+        }
+        
+    }
+
+}
+
+    </script>
+</body>
+</html>
